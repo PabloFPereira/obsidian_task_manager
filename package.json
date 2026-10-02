@@ -1,0 +1,27 @@
+{
+  "name": "obsidian-kanban-task-manager",
+  "version": "0.1.0",
+  "description": "Native Obsidian task manager over Markdown Kanban files.",
+  "main": "main.js",
+  "scripts": {
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "build": "tsc -p tsconfig.build.json && node scripts/cjs-bundle.mjs",
+    "lint": "tsc -noEmit -skipLibCheck",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "obsidian",
+    "tasks",
+    "kanban"
+  ],
+  "author": "PabloFPereira",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "builtin-modules": "^5.0.0",
+    "esbuild": "^0.25.10",
+    "obsidian": "^1.8.7",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

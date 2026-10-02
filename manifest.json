@@ -1,0 +1,10 @@
+{
+  "id": "kanban-task-manager",
+  "name": "Kanban Task Manager",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Manage Markdown Kanban tasks, projects, related notes, dates, and progress inside Obsidian.",
+  "author": "PabloFPereira",
+  "authorUrl": "https://github.com/PabloFPereira",
+  "isDesktopOnly": false
+}
