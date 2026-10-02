@@ -33,6 +33,42 @@ Se o plugin for desativado, as tarefas continuam salvas como Markdown comum.
 - Remocao de `completedAt` quando a task sai de `Done`.
 - Persistencia em Markdown, sem banco paralelo.
 
+## Instalacao simples
+
+Clone este repositorio direto na pasta de plugins do seu Vault:
+
+```bash
+cd "CAMINHO_DO_SEU_VAULT/.obsidian/plugins"
+git clone https://github.com/PabloFPereira/obsidian_task_manager.git kanban-task-manager
+```
+
+Depois:
+
+1. Abra ou reinicie o Obsidian.
+2. Va em `Settings > Community plugins`.
+3. Desative `Restricted mode`, se necessario.
+4. Ative `Kanban Task Manager`.
+5. Abra pelo icone na Ribbon ou pela Command Palette: `Abrir Task Manager`.
+
+O repositorio ja contem os arquivos que o Obsidian precisa para carregar o plugin:
+
+```text
+manifest.json
+main.js
+styles.css
+```
+
+## Atualizar o plugin
+
+Dentro da pasta do plugin no Vault:
+
+```bash
+cd "CAMINHO_DO_SEU_VAULT/.obsidian/plugins/kanban-task-manager"
+git pull
+```
+
+Reinicie o Obsidian ou desative/ative o plugin.
+
 ## Estrutura plug and play do Vault
 
 Estrutura recomendada para quem vai usar o plugin:
@@ -146,36 +182,6 @@ Quando uma task e criada, editada, movida ou reordenada pelo plugin, ele adicion
 
 Esses metadados guardam id, status, projeto, nota relacionada, prioridade, tamanho, prazo, data de inicio, data de termino, criacao e atualizacao.
 
-## Instalacao manual
-
-1. Baixe estes arquivos da release do GitHub:
-
-```text
-manifest.json
-main.js
-styles.css
-```
-
-2. Dentro do Vault, crie a pasta:
-
-```text
-.obsidian/plugins/kanban-task-manager/
-```
-
-3. Copie os tres arquivos para essa pasta:
-
-```text
-.obsidian/plugins/kanban-task-manager/manifest.json
-.obsidian/plugins/kanban-task-manager/main.js
-.obsidian/plugins/kanban-task-manager/styles.css
-```
-
-4. Abra o Obsidian.
-5. Va em `Settings > Community plugins`.
-6. Desative `Restricted mode`, se necessario.
-7. Ative `Kanban Task Manager`.
-8. Abra pelo icone na Ribbon ou pela Command Palette: `Abrir Task Manager`.
-
 ## Configuracao no Obsidian
 
 Va em:
@@ -287,7 +293,7 @@ Gere o build final:
 npm run build
 ```
 
-O build gera/atualiza o arquivo:
+O build gera/atualiza:
 
 ```text
 main.js
@@ -296,7 +302,7 @@ main.js
 ## Estrutura deste repositorio
 
 ```text
-kanban-task-manager/
+obsidian_task_manager/
 ├── .gitignore
 ├── LICENSE
 ├── README.md
@@ -314,26 +320,7 @@ kanban-task-manager/
 └── tests/
 ```
 
-## O que entra no GitHub
-
-Inclua no repositorio:
-
-```text
-README.md
-LICENSE
-manifest.json
-main.js
-styles.css
-package.json
-package-lock.json
-tsconfig.json
-tsconfig.build.json
-esbuild.config.mjs
-version-bump.mjs
-scripts/
-src/
-tests/
-```
+## O que nao versionar
 
 Nao publique:
 
@@ -353,55 +340,19 @@ Notes/
 
 Essas pastas sao dados do usuario, nao codigo do plugin.
 
-## Publicacao no GitHub
+## Deploy no GitHub
 
-1. Crie um repositorio publico, por exemplo `kanban-task-manager`.
-2. Copie todo o conteudo desta pasta para a raiz do repositorio.
-3. Ajuste `author` e `authorUrl` no `manifest.json`.
-4. Rode:
+Fluxo simples:
 
 ```bash
-npm install
-npm run lint
-npm test
-npm run build
+git add .
+git commit -m "Update plugin"
+git push
 ```
 
-5. Faca commit e push.
-6. Crie uma GitHub Release.
-7. A tag da release deve ser exatamente igual ao `version` do `manifest.json`.
+Nao e necessario criar GitHub Release para usar este plugin pelo fluxo de clone direto no Vault.
 
-Para a versao atual:
-
-```text
-0.1.0
-```
-
-8. Anexe na release:
-
-```text
-main.js
-manifest.json
-styles.css
-```
-
-## Checklist antes da release
-
-Confirme:
-
-```text
-README.md existe na raiz
-LICENSE existe na raiz
-manifest.json existe na raiz
-main.js existe na raiz
-styles.css existe na raiz
-npm run lint passa
-npm test passa
-npm run build passa
-tag da release == version do manifest.json
-```
-
-## Teste manual da release
+## Teste manual
 
 1. Crie um Vault de teste.
 2. Crie:
@@ -433,7 +384,7 @@ Projects/Projeto Teste.md
 Notes/Nota Tecnica.md
 ```
 
-5. Instale manualmente `main.js`, `manifest.json` e `styles.css` da release.
+5. Clone este repositorio em `.obsidian/plugins/kanban-task-manager`.
 6. Ative o plugin.
 7. Valide:
 
@@ -446,26 +397,6 @@ Notes/Nota Tecnica.md
 - filtro de projeto funciona;
 - dashboard calcula dados;
 - remover nota/projeto da task funciona.
-
-## Publicacao na comunidade do Obsidian
-
-Depois que o repositorio e a release estiverem prontos:
-
-1. Garanta que o repositorio e publico.
-2. Garanta que `README.md`, `LICENSE` e `manifest.json` estao na raiz.
-3. Garanta que a release tem:
-   - `main.js`
-   - `manifest.json`
-   - `styles.css`
-4. Garanta que a tag da release e igual ao `version` do `manifest.json`.
-5. Submeta o plugin pelo diretorio da comunidade do Obsidian.
-
-Segundo a documentacao oficial do Obsidian, quando um usuario instala um plugin, o Obsidian baixa `main.js`, `manifest.json` e `styles.css` da GitHub Release cuja tag corresponde a versao do `manifest.json`.
-
-Fontes:
-
-- https://docs.obsidian.md/Plugins/Releasing/Submit%20your%20plugin
-- https://github.com/obsidianmd/obsidian-releases/blob/master/README.md
 
 ## Troubleshooting
 
@@ -506,18 +437,3 @@ Projects/
 ```
 
 Notas fora de `Projects/` sao tratadas como notas relacionadas.
-
-### Release instala versao errada
-
-Confira se:
-
-```text
-tag da release == version do manifest.json
-```
-
-Exemplo:
-
-```text
-tag: 0.1.0
-manifest version: 0.1.0
-```
